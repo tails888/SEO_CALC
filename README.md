@@ -1,219 +1,147 @@
 # SEO_CALC
 
-Šis ir vienkāršs SEO cenu kalkulators.
+Vienkāršs SEO cenu kalkulators.
 
-Tu atver lapu, saliec klienta situāciju, un kalkulators uzreiz parāda cenu.
+Atver, saliec situāciju, un uzreiz redzi aptuveno cenu.
 
-Tas ir domāts ātrai sarunai ar klientu, nevis sarežģītai grāmatvedībai.
+Nav jādomā formulas. Nav jāskaita ar roku. Vienkārši izvēlies, kas klientam vajadzīgs.
 
-Repo links: https://github.com/tails888/SEO_CALC
-
-## Īsā versija
-
-Ja gribi tikai palaist kalkulatoru webhostingā, dari šādi:
-
-1. Atver hostingā `public_html` mapi.
-2. Ieliec tur šos failus:
-
-```text
-index.html
-site.webmanifest
-assets/
-```
-
-3. Atver savu domēnu.
-4. Kalkulatoram jāparādās automātiski.
-
-## Mindmap tree
+## Kā tas strādā
 
 ```text
 SEO_CALC
-├── index.html
-│   ├── galvenais kalkulators
-│   ├── dizains
-│   ├── slīdņi
-│   ├── cenas
-│   └── kopēšanas poga klienta tekstam
+├── Darba veids
+│   ├── Vienreizējs darbs
+│   └── Mēneša sadarbība
 │
-├── site.webmanifest
-│   ├── app nosaukums telefonā
-│   ├── Android home screen info
-│   ├── app krāsas
-│   └── norāde, ar kuru lapu app sākas
+├── Klients
+│   ├── Jauns klients
+│   └── Esošs klients
 │
-└── assets/
-    └── icons/
-        ├── browser tab logo
-        ├── iPhone home screen logo
-        ├── Android 192x192 logo
-        └── Android 512x512 logo
+├── Darba apjoms
+│   ├── 30 min
+│   ├── stundas
+│   └── paketes
+│
+├── Papildopcijas
+│   ├── Google profila posti
+│   ├── Search Console
+│   ├── Schema markup
+│   ├── Landing page
+│   └── citi SEO darbi
+│
+├── Cena
+│   ├── gala summa
+│   ├── atlaide
+│   └── steidzamības uzcenojums
+│
+└── Teksts klientam
+    └── nokopē un nosūti klientam
 ```
 
-## Kas ir šis kalkulators
+## Kā lietot kalkulatoru
 
-Tas ir web kalkulators SEO pakalpojumu cenu aprēķinam.
-
-Ar to var ātri nosaukt cenu par:
-
-- nelielu SEO darbu;
-- SEO auditu;
-- Google Business Profile darbu;
-- landing page vai service page darbu;
-- mēneša SEO sadarbību;
-- papildus SEO opcijām.
-
-## Kā viņu izmantot ikdienā
-
-1. Atver kalkulatora linku.
+1. Atver kalkulatoru.
 2. Izvēlies, vai tas ir vienreizējs darbs vai mēneša sadarbība.
-3. Izvēlies klienta tipu:
-
-```text
-Jauns klients
-Esošs klients
-```
-
-4. Ar slīdni izvēlies darba apjomu.
-5. Ja vajag, pieliec papildopcijas.
-6. Ja darbs ir steidzams, pieliec prioritātes uzcenojumu.
-7. Ja gribi iedot labāku cenu, noregulē atlaidi.
+3. Izvēlies klientu: jauns vai esošs.
+4. Ar slīdni uzliec darba apjomu.
+5. Pievieno papildopcijas, ja vajag.
+6. Ja darbs ir steidzams, pieliec prioritāti.
+7. Ja gribi iedot labāku cenu, pieliec atlaidi.
 8. Skaties gala cenu.
 9. Spied `Kopēt klientam`.
-10. Ielīmē tekstu WhatsApp, e-pastā vai čatā ar klientu.
+10. Ielīmē tekstu čatā, e-pastā vai WhatsApp.
 
-## Kā publicēt uz Hostinger vai cita webhosta
+## Kā saprast sadaļas
 
-Tev nav vajadzīgs nekāds build process.
+### Vienreizējs darbs
 
-Tev nav vajadzīgs backend.
+Izmanto, ja klientam vajag vienu konkrētu darbu.
 
-Tev nav vajadzīga datubāze.
+Piemēram:
 
-Vienkārši ieliec failus webhostā.
+- mazs SEO labojums;
+- audits;
+- Google profila sakārtošana;
+- viena pakalpojuma lapa.
 
-Pareizā struktūra hostingā:
+### Mēneša sadarbība
 
-```text
-public_html/
-├── index.html
-├── site.webmanifest
-└── assets/
-    └── icons/
-        ├── apple-touch-icon.png
-        ├── favicon-32x32.png
-        ├── icon-192.png
-        ├── icon-512.png
-        └── seo-calc-logo.png
-```
+Izmanto, ja klientam vajag regulāru SEO darbu katru mēnesi.
 
-Svarīgi: `index.html`, `site.webmanifest` un `assets` mapei jābūt vienā līmenī.
+Piemēram:
 
-Ja `assets` mape ir ielikta citur, logo var nerādīties.
+- Google profils;
+- regulāri posti;
+- SEO lapu uzlabošana;
+- ilgāks darbs pie redzamības.
 
-## Kā pārbaudīt, vai viss ir pareizi
+### Jauns klients
 
-Pēc upload hostingā:
+Izmanto, ja cena sākas no parastās cenas.
 
-1. Atver savu domēnu.
-2. Ja kalkulators parādās, `index.html` ir pareizā vietā.
-3. Paskaties browser tab. Tur jāparādās mazajam logo.
-4. Telefonā atver lapu un pārbaudi, vai dizains izskatās normāli.
-5. Pamēģini uzlikt lapu uz iPhone home screen.
+### Esošs klients
 
-## Kā pievienot uz iPhone Home Screen
+Izmanto, ja gribi iedot lojālāku cenu esošam klientam.
 
-Šādi kalkulatoru var lietot kā mazu app ikonu telefonā.
+### Atlaide
 
-1. Atver Safari uz iPhone.
-2. Ievadi kalkulatora web adresi.
-3. Kad lapa atveras, spied `Share` pogu.
+Atlaidi vari regulēt pats.
 
-Tā ir poga ar kvadrātu un bultiņu uz augšu.
+Tā ir noderīga, ja gribi ātri iedot labāku cenu sarunas laikā.
 
-4. Ritini uz leju.
-5. Spied `Add to Home Screen`.
-6. Pārbaudi nosaukumu. Tam vajadzētu būt `SEO_CALC`.
-7. Spied `Add`.
-8. Tagad iPhone sākuma ekrānā būs kalkulatora ikona.
+### Prioritāte
 
-Pēc tam vari atvērt kalkulatoru kā parastu app.
+Prioritāti izmanto, ja klientam vajag darbu ātri.
 
-## Ja iPhone ikona nerādās pareizi
+Tas pieliek uzcenojumu.
 
-Pārbaudi šīs lietas:
+## Kā pievienot kalkulatoru uz iPhone Home Screen
 
-```text
-index.html
-site.webmanifest
-assets/icons/apple-touch-icon.png
-```
+Tad kalkulators būs kā app ikona uz telefona.
 
-Visiem šiem failiem jābūt pareizā vietā.
+1. Atver kalkulatoru Safari pārlūkā.
+2. Spied `Share` pogu.
 
-`index.html` failā ir šī rinda:
+Tā ir ikona ar kvadrātu un bultiņu uz augšu.
 
-```html
-<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" sizes="180x180">
-```
+3. Ritini uz leju.
+4. Spied `Add to Home Screen`.
+5. Pārbaudi nosaukumu.
+6. Spied `Add`.
+7. Tagad kalkulators būs uz iPhone sākuma ekrāna.
 
-Ja `apple-touch-icon.png` nav tajā vietā, iPhone nevarēs paņemt pareizo ikonu.
+Pēc tam vari to atvērt kā parastu app.
 
-## Kā pievienot uz Android Home Screen
-
-1. Atver kalkulatoru Chrome pārlūkā.
-2. Spied trīs punktus augšā.
-3. Izvēlies `Add to Home screen` vai `Install app`.
-4. Apstiprini.
-5. Android sākuma ekrānā parādīsies SEO_CALC ikona.
-
-Android izmanto `site.webmanifest` failu un ikonas no `assets/icons/` mapes.
-
-## Biežākās kļūdas
-
-### Lapa neatveras
-
-Visticamāk `index.html` nav ielikts `public_html` mapē.
-
-### Logo nerādās browser tabā
-
-Pārbaudi, vai eksistē:
+## iPhone īsā versija
 
 ```text
-assets/icons/favicon-32x32.png
+Safari
+└── Atver kalkulatoru
+    └── Share poga
+        └── Add to Home Screen
+            └── Add
+                └── SEO_CALC ir uz ekrāna
 ```
 
-### iPhone nerāda pareizo ikonu
+## Kā lietot no telefona
 
-Pārbaudi, vai eksistē:
+1. Atver SEO_CALC ikonu.
+2. Izvēlies darba veidu.
+3. Pabīdi slīdni.
+4. Atzīmē vajadzīgās papildopcijas.
+5. Nokopē tekstu klientam.
+
+Tas ir ērti, ja esi sarunā, zvana laikā vai ātri jāpasaka cena.
+
+## Kam tas ir noderīgs
+
+Šis kalkulators palīdz, ja vajag ātri atbildēt uz jautājumu:
 
 ```text
-assets/icons/apple-touch-icon.png
+Cik tas aptuveni maksās?
 ```
 
-### Android neuzvedas kā app
+Tas nav domāts sarežģītai grāmatvedībai.
 
-Pārbaudi, vai eksistē:
-
-```text
-site.webmanifest
-assets/icons/icon-192.png
-assets/icons/icon-512.png
-```
-
-### Dizains izskatās salūzis
-
-Visticamāk nav uploadota visa `assets` mape vai faili nav vienā līmenī ar `index.html`.
-
-## Kas jāatceras
-
-Šis projekts ir statiska mājaslapa.
-
-Tas nozīmē:
-
-- nav servera koda;
-- nav datubāzes;
-- nav instalācijas;
-- nav build komandas;
-- var hostot gandrīz jebkurā webhostingā.
-
-Vienkārši upload failus un atver domēnu.
+Tas ir ātrs cenu palīgs ikdienas sarunām ar klientiem.
