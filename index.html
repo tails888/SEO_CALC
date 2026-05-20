@@ -1,0 +1,1516 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Ātrs SEO cenu kalkulators vienreizējiem darbiem un mēneša sadarbībai.">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SEO_CALC">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="icon" href="assets/icons/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/icons/icon-192.png" sizes="192x192" type="image/png">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png" sizes="180x180">
+<link rel="manifest" href="site.webmanifest">
+<title>SEO_CALC</title>
+<style>
+:root {
+  --bg: #f7f7f4;
+  --panel: #ffffff;
+  --ink: #111111;
+  --muted: #303030;
+  --soft: #ffffff;
+  --soft-2: #eeeeee;
+  --line: #111111;
+  --line-strong: #151515;
+  --accent: #111111;
+  --positive: #111111;
+  --warn: #98672a;
+  --shadow: none;
+  --radius-lg: 32px;
+  --radius-md: 9px;
+  --radius-sm: 7px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --display: Georgia, "Times New Roman", ui-serif, serif;
+  --mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  line-height: 1.25;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.app {
+  width: min(1180px, calc(100% - 20px));
+  margin: 0 auto;
+  padding: max(18px, env(safe-area-inset-top)) 0 max(24px, env(safe-area-inset-bottom));
+}
+
+.topbar {
+  display: block;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.brand {
+  display: block;
+}
+
+.logo-mark {
+  display: none;
+}
+
+.brand h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-size: clamp(30px, 9vw, 38px);
+  line-height: 1;
+  letter-spacing: -.03em;
+  font-weight: 500;
+}
+
+.brand p {
+  width: min(360px, 100%);
+  margin: 7px 0 0;
+  color: #111;
+  font-size: 13px;
+  line-height: 1.22;
+}
+
+.label {
+  display: block;
+  color: #111;
+  font-size: 10px;
+  font-weight: 850;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.layout {
+  display: block;
+}
+
+.panel {
+  border: 1.4px solid var(--line);
+  border-radius: 22px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.main-panel {
+  padding: 18px;
+}
+
+.segment {
+  display: grid;
+  gap: 0;
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.segment.two {
+  grid-template-columns: 1fr 1fr;
+}
+
+.segment.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.segment button {
+  min-height: 34px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #111;
+  cursor: pointer;
+  font: 12px/1.1 Arial, Helvetica, sans-serif;
+}
+
+.segment button.active {
+  background: #000;
+  color: #fff;
+  box-shadow: none;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  align-items: start;
+  margin-top: 24px;
+}
+
+.hero h2 {
+  margin: 0;
+  max-width: 720px;
+  font-family: var(--display);
+  font-size: 29px;
+  line-height: 1;
+  letter-spacing: -.04em;
+  font-weight: 500;
+}
+
+.hero .label {
+  margin-bottom: 5px;
+}
+
+.hero p {
+  margin: 7px 0 0;
+  max-width: 660px;
+  color: #111;
+  font-size: 12px;
+}
+
+.status {
+  min-width: 0;
+  padding: 12px 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  text-align: left;
+}
+
+.status strong {
+  display: block;
+  margin-top: 7px;
+  font: 14px/1.1 var(--font);
+  letter-spacing: 0;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.calc-card {
+  padding: 17px 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.readout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.readout h3 {
+  margin: 9px 0 0;
+  font: 16px/1.1 var(--font);
+  letter-spacing: 0;
+}
+
+.readout p {
+  margin: 8px 0 0;
+  color: #111;
+  font-size: 12px;
+}
+
+.range-value {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.range-value strong {
+  display: block;
+  font: 700 16px/1 var(--font);
+  letter-spacing: 0;
+}
+
+.range-value span {
+  display: block;
+  margin-top: 8px;
+  color: #111;
+  font: 700 11px/1 var(--font);
+}
+
+.range-wrap {
+  margin-top: 18px;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 38px;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 0;
+  background: linear-gradient(90deg, var(--accent) var(--fill, 0%), var(--soft-2) var(--fill, 0%));
+}
+
+input[type="range"]::-moz-range-track {
+  height: 3px;
+  border-radius: 0;
+  background: var(--soft-2);
+}
+
+input[type="range"]::-moz-range-progress {
+  height: 3px;
+  border-radius: 0;
+  background: var(--accent);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  width: 23px;
+  height: 23px;
+  margin-top: -10px;
+  border: 0;
+  border-radius: 2px;
+  background: var(--ink);
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 23px;
+  height: 23px;
+  border: 0;
+  border-radius: 2px;
+  background: var(--ink);
+  box-shadow: none;
+}
+
+.ticks {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 7px;
+  color: #111;
+  font: 10px/1 Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+
+.result-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 18px 18px;
+  border: 1px solid #111;
+  border-radius: 8px;
+  background: #fff;
+  color: #111;
+}
+
+.price {
+  font-family: var(--display);
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -.04em;
+  font-weight: 700;
+}
+
+.price-note {
+  margin-top: 13px;
+  max-width: 640px;
+  color: #111;
+  font-size: 11px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 20px;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 3px;
+  background: #000;
+  color: #fff;
+  font: 700 10px/1 Arial, Helvetica, sans-serif;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.choice-grid,
+.addons-grid {
+  display: grid;
+  gap: 10px;
+}
+
+.choice-grid {
+  grid-template-columns: 1fr;
+}
+
+.choice,
+.addon {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+
+.choice {
+  min-height: 0;
+  padding: 11px 12px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.choice.active {
+  border-color: var(--ink);
+  background: var(--panel);
+  box-shadow: none;
+}
+
+.choice strong {
+  display: block;
+  font: 700 12px/1.1 var(--font);
+}
+
+.choice span {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.choice b {
+  display: block;
+  margin-top: 8px;
+  font: 700 12px/1 var(--font);
+}
+
+.control-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.client-note {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.addons {
+  margin-top: 14px;
+  padding: 18px;
+}
+
+.addons h3 {
+  display: none;
+}
+
+.addons p {
+  display: none;
+}
+
+.addons-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px 10px;
+  margin-top: 9px;
+}
+
+.addon {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 6px;
+  align-items: start;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+.addon input {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--ink);
+  margin: 1px 0 0;
+}
+
+.addon strong {
+  display: block;
+  font: 700 10px/1.15 Arial, Helvetica, sans-serif;
+}
+
+.addon span span {
+  display: block;
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 9px;
+}
+
+.addon b {
+  grid-column: 2;
+  white-space: nowrap;
+  font: 400 10px/1 Arial, Helvetica, sans-serif;
+}
+
+.receipt {
+  position: static;
+  overflow: hidden;
+  margin-top: 14px;
+  padding: 18px;
+}
+
+.receipt-top {
+  display: block;
+  padding: 0;
+  border-bottom: 0;
+}
+
+.receipt-top > .label {
+  display: block;
+}
+
+.receipt-total {
+  margin-top: 10px;
+  font-family: var(--display);
+  font-size: 64px;
+  line-height: .83;
+  letter-spacing: -.07em;
+  font-weight: 400;
+}
+
+.actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 14px;
+  min-width: 0;
+}
+
+.action {
+  min-height: 45px;
+  border: 1px solid var(--ink);
+  border-radius: 8px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font: 700 12px/1 Arial, Helvetica, sans-serif;
+}
+
+.primary {
+  background: var(--ink);
+  color: #fff;
+}
+
+.secondary {
+  background: transparent;
+  color: var(--ink);
+}
+
+.toast {
+  min-height: 18px;
+  margin-top: 10px;
+  color: var(--positive);
+  font-size: 11px;
+  font-weight: 800;
+  grid-column: 1 / -1;
+}
+
+.receipt-body {
+  padding: 0;
+}
+
+.lines {
+  display: grid;
+  gap: 9px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.line {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+  font-size: 14px;
+}
+
+.line span {
+  color: #3f3b35;
+}
+
+.line strong {
+  white-space: nowrap;
+}
+
+.line.discount strong,
+.line.discount span {
+  color: var(--positive);
+}
+
+.total-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--ink);
+  font-size: 16px;
+  font-weight: 950;
+}
+
+.plain {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.35;
+  text-align: left;
+}
+
+.copy-buffer {
+  display: none;
+  width: 100%;
+  min-height: 90px;
+  margin-top: 14px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fff;
+  color: var(--ink);
+  resize: vertical;
+  font: 13px/1.45 var(--font);
+}
+
+.footer {
+  width: min(320px, 100%);
+  margin: 20px auto 0;
+  color: var(--muted);
+  font-size: 9px;
+  text-align: center;
+}
+
+@media (min-width: 760px) {
+  .app {
+    width: min(1180px, calc(100% - 32px));
+    padding: 40px 0 36px;
+  }
+
+  .topbar {
+    display: block;
+    margin-bottom: 24px;
+    text-align: left;
+  }
+
+  .brand h1 {
+    font-size: 42px;
+  }
+
+  .brand p {
+    width: min(430px, 100%);
+    margin: 10px 0 0;
+    font-size: 15px;
+  }
+
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 320px);
+    gap: 18px;
+    align-items: start;
+  }
+
+  .layout > div {
+    min-width: 0;
+  }
+
+  .main-panel {
+    padding: 28px;
+    border-bottom: 1.4px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .segment {
+    border-radius: 10px;
+  }
+
+  .segment button {
+    min-height: 42px;
+    font-size: 13px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 30px;
+  }
+
+  .hero h2 {
+    max-width: 640px;
+    font-size: 42px;
+  }
+
+  .hero p {
+    max-width: 580px;
+    font-size: 16px;
+  }
+
+  .status {
+    padding: 18px;
+  }
+
+  .status strong {
+    font-size: 16px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 24px;
+  }
+
+  .calc-card {
+    padding: 22px;
+  }
+
+  .readout h3 {
+    font-size: 20px;
+  }
+
+  .readout p {
+    font-size: 13px;
+  }
+
+  .range-wrap {
+    margin-top: 26px;
+  }
+
+  .ticks {
+    font-size: 11px;
+  }
+
+  .result-card {
+    grid-column: 1 / -1;
+    min-height: 170px;
+    padding: 28px;
+  }
+
+  .price {
+    font-size: 56px;
+    font-weight: 500;
+  }
+
+  .price-note {
+    max-width: 500px;
+    font-size: 14px;
+  }
+
+  .pill {
+    min-height: 28px;
+    padding: 7px 11px;
+  }
+
+  .choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .choice {
+    padding: 15px;
+  }
+
+  .choice strong {
+    font-size: 13px;
+  }
+
+  .choice span {
+    font-size: 12px;
+  }
+
+  .control-row {
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr;
+  }
+
+  .client-note {
+    font-size: 12px;
+  }
+
+  .addons {
+    margin-top: 18px;
+    padding: 24px 28px;
+    border: 1.4px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .addons h3 {
+    display: block;
+    margin: 8px 0 0;
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: -.04em;
+    font-weight: 500;
+  }
+
+  .addons p {
+    display: block;
+    max-width: 540px;
+    margin: 10px 0 0;
+    font-size: 14px;
+  }
+
+  .addons-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 20px;
+  }
+
+  .addon {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 9px;
+    min-height: 86px;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius-md);
+  }
+
+  .addon input {
+    width: 16px;
+    height: 16px;
+  }
+
+  .addon strong {
+    font-size: 12px;
+  }
+
+  .addon span span {
+    font-size: 11px;
+  }
+
+  .addon b {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+    align-self: start;
+    font-weight: 700;
+  }
+
+  .receipt {
+    position: sticky;
+    top: 24px;
+    margin-top: 0;
+    padding: 28px;
+    border-top: 1.4px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+
+  .receipt-top {
+    display: block;
+  }
+
+  .receipt-top > .label {
+    display: block;
+  }
+
+  .receipt-total {
+    margin-top: 18px;
+    font-size: 64px;
+    line-height: .9;
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin-top: 22px;
+    min-width: 0;
+  }
+
+  .toast {
+    min-height: 20px;
+  }
+
+  .receipt-body {
+    margin-top: 18px;
+  }
+
+  .lines {
+    display: grid;
+    gap: 10px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+  }
+
+  .line {
+    font-size: 13px;
+  }
+
+  .total-row {
+    display: grid;
+  }
+
+  .plain {
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    line-height: 1.35;
+    text-align: left;
+  }
+
+  .footer {
+    width: 100%;
+    margin-top: 18px;
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .app {
+    width: min(1180px, calc(100% - 56px));
+  }
+
+  .brand h1 {
+    font-size: 46px;
+  }
+
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 360px;
+  }
+
+  .hero {
+    grid-template-columns: minmax(0, 1fr) 260px;
+  }
+
+  .hero h2 {
+    font-size: 56px;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .result-card {
+    min-height: 170px;
+  }
+
+  .price {
+    font-size: 72px;
+  }
+
+  .choice-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .control-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .addons-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .receipt-total {
+    font-size: 88px;
+  }
+}
+
+@media (max-width: 759px) {
+  .app {
+    width: calc(100% - 20px);
+  }
+
+  .main-panel,
+  .addons,
+  .receipt {
+    border-radius: 22px;
+  }
+
+  .main-panel {
+    padding: 0;
+    border: 0;
+    background: transparent;
+  }
+
+  .main-panel > .segment,
+  .hero,
+  .grid > div:first-child,
+  .grid > div:nth-child(4) {
+    border: 1.4px solid var(--line);
+    border-radius: 22px;
+    background: #fff;
+  }
+
+  .main-panel > .segment {
+    padding: 4px;
+  }
+
+  .hero,
+  .grid > div:first-child,
+  .grid > div:nth-child(4) {
+    padding: 18px;
+  }
+  
+  .receipt {
+    border: 1.4px solid var(--line);
+  }
+
+  .readout {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
+@media (max-width: 380px) {
+  .app {
+    width: calc(100% - 14px);
+  }
+
+  .segment button {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .hero h2 {
+    font-size: 27px;
+  }
+
+  .ticks {
+    font-size: 10px;
+  }
+
+  .receipt-top {
+    gap: 10px;
+  }
+
+  .receipt-total {
+    font-size: 57px;
+  }
+
+  .actions {
+    min-width: 0;
+  }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand">
+      <img class="logo-mark" src="assets/icons/seo-calc-logo.png" alt="SEO_CALC logo">
+      <div>
+        <h1>SEO cenu kalkulators</h1>
+        <p>Ātri pasaki cenu un nokopē klientam saprotamu tekstu.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <div>
+      <section class="panel main-panel">
+        <div class="segment two" role="tablist" aria-label="Darba veids">
+          <button class="active" type="button" data-mode="once">Vienreizējs darbs</button>
+          <button type="button" data-mode="monthly">Mēneša sadarbība</button>
+        </div>
+
+        <div class="hero">
+          <div>
+            <span class="label" id="modeKicker">Ātra cena</span>
+            <h2 id="modeTitle">Ātrs SEO darbs.</h2>
+            <p id="modeText">Mazs darbs, audits, Google profils vai web labojums. Cena parādās uzreiz.</p>
+          </div>
+          <div class="status">
+            <span class="label">Klients</span>
+            <strong id="clientStatus">Jauns klients</strong>
+          </div>
+        </div>
+
+        <div class="grid">
+          <div>
+            <span class="label">Klienta tips</span>
+            <div class="segment two" style="margin-top:10px" aria-label="Klienta tips">
+              <button class="active" type="button" data-client="new">Jauns klients</button>
+              <button type="button" data-client="existing">Esošs klients</button>
+            </div>
+            <p class="client-note" id="clientNote">Jaunam klientam cena sākas bez atlaides. Esošam klientam ielieku 10% kā lojalitātes sākumpunktu, bet tu vari mainīt.</p>
+          </div>
+
+          <div class="calc-card">
+            <div class="readout">
+              <div>
+                <span class="label" id="sliderKicker">Darba apjoms</span>
+                <h3 id="sliderTitle">Stundas</h3>
+                <p id="sliderNote">Izvēlies, cik daudz laika rēķināt.</p>
+              </div>
+              <div class="range-value">
+                <strong id="rangeValue">3 h</strong>
+                <span id="rangeHint">60 €/h</span>
+              </div>
+            </div>
+            <div class="range-wrap">
+              <input id="mainRange" type="range" min="0.5" max="8" step="0.5" value="3" aria-label="Darba apjoms">
+              <div class="ticks" id="ticks"></div>
+            </div>
+          </div>
+
+          <div class="result-card" aria-live="polite">
+            <div>
+              <div class="price" id="heroTotal">0 €</div>
+              <div class="price-note" id="heroNote">Cena mainās uzreiz.</div>
+            </div>
+            <div class="pill" id="recommendation">Gatavs</div>
+          </div>
+
+          <div>
+            <span class="label">Darba tips</span>
+            <div class="choice-grid" id="choiceGrid" style="margin-top:10px"></div>
+          </div>
+
+          <div class="control-row">
+            <div class="calc-card">
+              <div class="readout">
+                <div>
+                  <span class="label">Prioritāte</span>
+                  <h3>Ja vajag ātri</h3>
+                  <p>Uzcenojums steidzamam darbam.</p>
+                </div>
+                <div class="range-value">
+                  <strong id="rushValue">0%</strong>
+                  <span>uzcenojums</span>
+                </div>
+              </div>
+              <div class="range-wrap">
+                <input id="rushRange" type="range" min="0" max="50" step="10" value="0" aria-label="Prioritātes uzcenojums">
+                <div class="ticks"><span>0%</span><span>10%</span><span>20%</span><span>30%</span><span>40%</span><span>50%</span></div>
+              </div>
+            </div>
+
+            <div class="calc-card">
+              <div class="readout">
+                <div>
+                  <span class="label">Atlaide</span>
+                  <h3>Laba cena</h3>
+                  <p>Manuāli regulē atlaidi, kad gribi iedot labāku cenu.</p>
+                </div>
+                <div class="range-value">
+                  <strong id="discountValue">0%</strong>
+                  <span id="discountHint">bez atlaides</span>
+                </div>
+              </div>
+              <div class="range-wrap">
+                <input id="discountRange" type="range" min="0" max="90" step="5" value="0" aria-label="Atlaide">
+                <div class="ticks"><span>0%</span><span>15%</span><span>30%</span><span>45%</span><span>60%</span><span>75%</span><span>90%</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel addons">
+        <span class="label">Papildopcijas</span>
+        <h3>Kas vēl vajadzīgs?</h3>
+        <p>Pievieno tikai tos darbus, ko klients prasa vai kas tiešām palīdz sasniegt mērķi.</p>
+        <div class="addons-grid" id="addonsGrid"></div>
+      </section>
+    </div>
+
+    <aside class="panel receipt" aria-live="polite">
+      <div class="receipt-top">
+        <span class="label">Kopsavilkums</span>
+        <div class="receipt-total" id="sideTotal">0 €</div>
+        <div class="actions">
+          <button class="action primary" type="button" id="copyQuote">Kopēt klientam</button>
+          <button class="action secondary" type="button" id="resetCalc">Notīrīt</button>
+        </div>
+        <div class="toast" id="toast"></div>
+      </div>
+      <div class="receipt-body">
+        <div class="lines" id="lineList"></div>
+        <div class="total-row"><span>Kopā</span><strong id="grandTotal">0 €</strong></div>
+        <div class="plain" id="plainText">Izvēlies darbu.</div>
+        <textarea class="copy-buffer" id="copyBuffer" readonly aria-label="Teksts manuālai kopēšanai"></textarea>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer">Cenas ir orientējošas. Gala piedāvājumu pielāgo nišai, konkurencei un darba apjomam.</footer>
+</div>
+
+<script>
+const state = {
+  mode: "once",
+  choice: "quick",
+  client: "new"
+};
+
+const modes = {
+  once: {
+    kicker: "Ātra cena",
+    title: "Ātrs SEO darbs.",
+    text: "Mazs darbs, audits, Google profils vai web labojums. Cena parādās uzreiz.",
+    sliderKicker: "Darba apjoms",
+    sliderTitle: "Stundas",
+    sliderNote: "Izvēlies, cik daudz laika rēķināt.",
+    rangeHint: "60 €/h",
+    min: .5,
+    max: 8,
+    step: .5,
+    value: 3,
+    ticks: ["30m", "1h", "2h", "3h", "4h", "5h", "6h", "7h", "8h"],
+    choices: [
+      { id: "quick", title: "Ātra palīdzība", note: "Mazs SEO vai mājaslapas darbs.", base: 0, priceText: "+60 €/h", badge: "Ātri" },
+      { id: "audit", title: "Audits / setup", note: "Pārbaude, plāns vai Google profils.", base: 150, priceText: "+150 €" },
+      { id: "page", title: "Lapa / web", note: "Servisa lapa vai lielāks web darbs.", base: 350, priceText: "+350 €" }
+    ],
+    addons: [
+      { id: "post1", title: "1 GBP posts", note: "Īss Google profila ieraksts.", price: 30 },
+      { id: "posts4", title: "4 GBP posti", note: "Mēneša aktivitāte profilam.", price: 95 },
+      { id: "qr", title: "Review link + QR", note: "Atsauksmju vākšana.", price: 45 },
+      { id: "gsc", title: "Search Console setup", note: "SEO dati un sitemap.", price: 110 },
+      { id: "schema", title: "Schema markup", note: "Strukturētie dati.", price: 180 },
+      { id: "refresh", title: "GBP refresh", note: "Esoša Google profila uzlabojums.", price: 280 },
+      { id: "landing", title: "Landing / service page", note: "Viena pakalpojuma lapa.", price: 450 },
+      { id: "deep", title: "Deep SEO audits", note: "Dziļāks audits un plāns.", price: 550 },
+      { id: "web", title: "SEO mājaslapa", note: "Lielāks web projekts.", price: 1500 }
+    ]
+  },
+  monthly: {
+    kicker: "Mēneša cena",
+    title: "SEO mēneša sadarbība.",
+    text: "Regulārs darbs, ja klientam vajag kustību katru mēnesi.",
+    sliderKicker: "Paketes līmenis",
+    sliderTitle: "Pakete",
+    sliderNote: "Izvēlies apjomu.",
+    rangeHint: "mēneša maksa",
+    min: 1,
+    max: 3,
+    step: 1,
+    value: 2,
+    ticks: ["Starter", "Growth", "Dominance"],
+    packages: {
+      1: { title: "Google Maps Starter", price: 350, note: "Mazam biznesam un mierīgai konkurencei." },
+      2: { title: "Local SEO Growth", price: 650, note: "Labs default variants nopietnam klientam." },
+      3: { title: "Local SEO Dominance", price: 1100, note: "Stiprām nišām un lielākam apjomam." }
+    },
+    choices: [
+      { id: "starter", title: "Starter", note: "Google profils un pamati.", level: 1, priceText: "350 €/mēn" },
+      { id: "growth", title: "Growth", note: "Profils, web, citāti un ritms.", level: 2, priceText: "650 €/mēn", badge: "Ieteicamais" },
+      { id: "dominance", title: "Dominance", note: "Stiprām nišām.", level: 3, priceText: "1100 €/mēn" }
+    ],
+    addons: [
+      { id: "audit-plan", title: "Audit Action Plan", note: "Pirmais plāns pirms darba.", price: 250 },
+      { id: "gbp-new", title: "GBP no nulles", note: "Ja profils vēl nav gatavs.", price: 420 },
+      { id: "citation", title: "Citation cleanup", note: "Vienādi dati katalogos.", price: 250 },
+      { id: "landing-month", title: "Landing / service page", note: "Viena spēcīga SEO lapa.", price: 450 },
+      { id: "schema-month", title: "Schema markup", note: "Tehnisks uzlabojums.", price: 180 },
+      { id: "reply", title: "Review reply templates", note: "Atbildes atsauksmēm.", price: 75 }
+    ]
+  }
+};
+
+const currency = new Intl.NumberFormat("lv-LV", {
+  style: "currency",
+  currency: "EUR",
+  maximumFractionDigits: 0
+});
+
+const els = {
+  modeButtons: [...document.querySelectorAll("[data-mode]")],
+  clientButtons: [...document.querySelectorAll("[data-client]")],
+  modeKicker: document.getElementById("modeKicker"),
+  modeTitle: document.getElementById("modeTitle"),
+  modeText: document.getElementById("modeText"),
+  clientStatus: document.getElementById("clientStatus"),
+  clientNote: document.getElementById("clientNote"),
+  sliderKicker: document.getElementById("sliderKicker"),
+  sliderTitle: document.getElementById("sliderTitle"),
+  sliderNote: document.getElementById("sliderNote"),
+  mainRange: document.getElementById("mainRange"),
+  rushRange: document.getElementById("rushRange"),
+  discountRange: document.getElementById("discountRange"),
+  ticks: document.getElementById("ticks"),
+  rangeValue: document.getElementById("rangeValue"),
+  rangeHint: document.getElementById("rangeHint"),
+  rushValue: document.getElementById("rushValue"),
+  discountValue: document.getElementById("discountValue"),
+  discountHint: document.getElementById("discountHint"),
+  heroTotal: document.getElementById("heroTotal"),
+  sideTotal: document.getElementById("sideTotal"),
+  grandTotal: document.getElementById("grandTotal"),
+  heroNote: document.getElementById("heroNote"),
+  recommendation: document.getElementById("recommendation"),
+  choiceGrid: document.getElementById("choiceGrid"),
+  addonsGrid: document.getElementById("addonsGrid"),
+  lineList: document.getElementById("lineList"),
+  plainText: document.getElementById("plainText"),
+  copyBuffer: document.getElementById("copyBuffer"),
+  toast: document.getElementById("toast")
+};
+
+function money(value) {
+  return currency.format(Math.round(value));
+}
+
+function signedMoney(value) {
+  return value < 0 ? `-${money(Math.abs(value))}` : money(value);
+}
+
+function setFill(input) {
+  const min = Number(input.min);
+  const max = Number(input.max);
+  const value = Number(input.value);
+  input.style.setProperty("--fill", `${((value - min) / (max - min)) * 100}%`);
+}
+
+function hoursLabel(hours) {
+  const whole = Math.floor(hours);
+  const hasHalf = hours % 1 !== 0;
+  if (hours === .5) return "30 min";
+  if (!hasHalf) return `${whole} h`;
+  return `${whole} h 30 min`;
+}
+
+function hoursText(hours) {
+  const whole = Math.floor(hours);
+  const hasHalf = hours % 1 !== 0;
+  if (hours === .5) return "30 minūtes";
+  if (!hasHalf) return hours === 1 ? "1 stunda" : `${whole} stundas`;
+  return `${whole} h 30 min`;
+}
+
+function setMode(mode) {
+  state.mode = mode;
+  state.choice = mode === "monthly" ? "growth" : "quick";
+  const config = modes[mode];
+  els.mainRange.min = config.min;
+  els.mainRange.max = config.max;
+  els.mainRange.step = config.step;
+  els.mainRange.value = config.value;
+  els.rushRange.value = 0;
+  render();
+  recalc();
+}
+
+function setClient(client) {
+  state.client = client;
+  els.discountRange.value = client === "existing" ? 10 : 0;
+  recalc();
+}
+
+function render() {
+  const config = modes[state.mode];
+  els.modeButtons.forEach(button => button.classList.toggle("active", button.dataset.mode === state.mode));
+  els.modeKicker.textContent = config.kicker;
+  els.modeTitle.textContent = config.title;
+  els.modeText.textContent = config.text;
+  els.sliderKicker.textContent = config.sliderKicker;
+  els.sliderTitle.textContent = config.sliderTitle;
+  els.sliderNote.textContent = config.sliderNote;
+  els.rangeHint.textContent = config.rangeHint;
+  els.ticks.innerHTML = config.ticks.map(tick => `<span>${tick}</span>`).join("");
+
+  els.choiceGrid.innerHTML = config.choices.map(choice => `
+    <button class="choice" type="button" data-choice="${choice.id}">
+      <strong>${choice.title}</strong>
+      <span>${choice.note}</span>
+      <b>${choice.priceText}</b>
+    </button>
+  `).join("");
+
+  els.addonsGrid.innerHTML = config.addons.map(addon => `
+    <label class="addon">
+      <input type="checkbox" data-addon="${addon.id}" data-title="${addon.title}" data-note="${addon.note}" data-price="${addon.price}">
+      <span><strong>${addon.title}</strong><span>${addon.note}</span></span>
+      <b>${money(addon.price)}</b>
+    </label>
+  `).join("");
+
+  document.querySelectorAll("[data-choice]").forEach(button => {
+    button.addEventListener("click", () => {
+      state.choice = button.dataset.choice;
+      if (state.mode === "monthly") {
+        const picked = modes.monthly.choices.find(choice => choice.id === state.choice);
+        els.mainRange.value = picked.level;
+      }
+      recalc();
+    });
+  });
+
+  els.addonsGrid.querySelectorAll("input").forEach(input => input.addEventListener("change", recalc));
+}
+
+function syncChoiceFromSlider() {
+  if (state.mode !== "monthly") return;
+  const level = Number(els.mainRange.value);
+  const choice = modes.monthly.choices.find(item => item.level === level);
+  state.choice = choice.id;
+}
+
+function syncButtons() {
+  document.querySelectorAll("[data-choice]").forEach(button => {
+    button.classList.toggle("active", button.dataset.choice === state.choice);
+  });
+  els.clientButtons.forEach(button => {
+    button.classList.toggle("active", button.dataset.client === state.client);
+  });
+}
+
+function baseLine() {
+  const config = modes[state.mode];
+  const rangeValue = Number(els.mainRange.value);
+
+  if (state.mode === "monthly") {
+    const pkg = config.packages[rangeValue];
+    return {
+      label: `${pkg.title} / mēnesī`,
+      value: pkg.price,
+      note: pkg.note,
+      badge: rangeValue === 2 ? "Ieteicamais" : "Gatavs",
+      readout: pkg.title.replace("Local SEO ", "")
+    };
+  }
+
+  const choice = config.choices.find(item => item.id === state.choice);
+  return {
+    label: `${choice.title} (${hoursText(rangeValue)})`,
+    value: choice.base + rangeValue * 60,
+    note: `${choice.note} Darba apjoms: ${hoursText(rangeValue).toLowerCase()}.`,
+    badge: choice.badge || "Gatavs",
+    readout: hoursLabel(rangeValue)
+  };
+}
+
+function addonLines() {
+  return [...els.addonsGrid.querySelectorAll("input:checked")].map(input => ({
+    label: input.dataset.title,
+    value: Number(input.dataset.price),
+    note: input.dataset.note
+  }));
+}
+
+function recalc() {
+  syncChoiceFromSlider();
+  syncButtons();
+  setFill(els.mainRange);
+  setFill(els.rushRange);
+  setFill(els.discountRange);
+
+  const base = baseLine();
+  const addons = addonLines();
+  const addonsTotal = addons.reduce((sum, addon) => sum + addon.value, 0);
+  const subtotal = base.value + addonsTotal;
+  const rushPercent = Number(els.rushRange.value);
+  const discountPercent = Number(els.discountRange.value);
+  const rushValue = subtotal * (rushPercent / 100);
+  const beforeDiscount = subtotal + rushValue;
+  const discountValue = beforeDiscount * (discountPercent / 100);
+  const total = Math.max(0, beforeDiscount - discountValue);
+
+  els.clientStatus.textContent = state.client === "existing" ? "Esošs klients" : "Jauns klients";
+  els.clientNote.textContent = state.client === "existing"
+    ? "Esošam klientam ielieku 10% kā lojalitātes sākumpunktu. Vari mainīt ar atlaides slīdni."
+    : "Jaunam klientam cena sākas bez atlaides. Ja vajag, vari manuāli iedot labāku cenu.";
+  els.rangeValue.textContent = base.readout;
+  els.rushValue.textContent = `${rushPercent}%`;
+  els.discountValue.textContent = `${discountPercent}%`;
+  els.discountHint.textContent = discountPercent > 0 ? `${money(discountValue)} atlaide` : "bez atlaides";
+  els.heroTotal.textContent = money(total);
+  els.sideTotal.textContent = money(total);
+  els.grandTotal.textContent = money(total);
+  els.heroNote.textContent = base.note;
+  els.recommendation.textContent = discountPercent > 0 ? "Labāka cena" : base.badge;
+
+  const rows = [base, ...addons];
+  if (rushPercent > 0) rows.push({ label: `Prioritāte +${rushPercent}%`, value: rushValue });
+  if (discountPercent > 0) rows.push({ label: `Atlaide ${discountPercent}%`, value: -discountValue, discount: true });
+
+  els.lineList.innerHTML = rows.map(row => `
+    <div class="line${row.discount ? " discount" : ""}"><span>${row.label}</span><strong>${signedMoney(row.value)}</strong></div>
+  `).join("");
+
+  els.plainText.textContent = plainText(total, base, addons, rushPercent, discountPercent);
+}
+
+function plainText(total, base, addons, rushPercent, discountPercent) {
+  const clientText = state.client === "existing" ? "Esošam klientam" : "Jaunam klientam";
+  const parts = [`${clientText} cena būtu ap ${money(total)}.`, base.note];
+  if (addons.length) parts.push(`Papildus iekļauts: ${addons.map(item => item.label).join(", ")}.`);
+  if (rushPercent > 0) parts.push(`Ir iekļauta prioritāte +${rushPercent}%.`);
+  if (discountPercent > 0) parts.push(`Ieliku ${discountPercent}% atlaidi.`);
+  return parts.join(" ");
+}
+
+function quoteText() {
+  const lines = [...els.lineList.querySelectorAll(".line")].map(line => line.textContent.trim()).join("\n");
+  return `${els.plainText.textContent}\n\n${lines}\nKopā: ${els.grandTotal.textContent}`;
+}
+
+async function copyQuote() {
+  els.toast.textContent = "";
+  els.copyBuffer.style.display = "none";
+  const text = quoteText();
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+    } else {
+      throw new Error("Clipboard API unavailable");
+    }
+    els.toast.textContent = "Teksts nokopēts.";
+  } catch (error) {
+    const fallback = document.createElement("textarea");
+    fallback.value = text;
+    fallback.setAttribute("readonly", "");
+    fallback.style.position = "fixed";
+    fallback.style.left = "-9999px";
+    document.body.appendChild(fallback);
+    fallback.select();
+    const copied = document.execCommand("copy");
+    fallback.remove();
+    if (copied) {
+      els.toast.textContent = "Teksts nokopēts.";
+    } else {
+      els.copyBuffer.value = text;
+      els.copyBuffer.style.display = "block";
+      els.copyBuffer.focus();
+      els.copyBuffer.select();
+      els.toast.textContent = "Automātiski nesanāca. Teksts ir iezīmēts zemāk.";
+    }
+  }
+}
+
+function resetCalc() {
+  state.client = "new";
+  els.discountRange.value = 0;
+  setMode(state.mode);
+  els.toast.textContent = "";
+}
+
+els.modeButtons.forEach(button => button.addEventListener("click", () => setMode(button.dataset.mode)));
+els.clientButtons.forEach(button => button.addEventListener("click", () => setClient(button.dataset.client)));
+els.mainRange.addEventListener("input", recalc);
+els.mainRange.addEventListener("change", recalc);
+els.rushRange.addEventListener("input", recalc);
+els.rushRange.addEventListener("change", recalc);
+els.discountRange.addEventListener("input", recalc);
+els.discountRange.addEventListener("change", recalc);
+document.getElementById("copyQuote").addEventListener("click", copyQuote);
+document.getElementById("resetCalc").addEventListener("click", resetCalc);
+
+setMode(state.mode);
+</script>
+</body>
+</html>
